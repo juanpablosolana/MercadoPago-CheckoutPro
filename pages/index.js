@@ -16,6 +16,7 @@ export default function Home() {
         <MercadoPagoCheckout
           publicKey={'APP_USR-1159009372558727-072921-8d0b99 80c7494985a5abd19fbe921a3d-617633181'}
           preferenceId={data}
+          onSuccess={(data) => console.log(data)}
         />
       })
 
