@@ -14,7 +14,7 @@ export default function handler(req, res) {
         "id": 1234,
         title,
         picture_url,
-        "description": 'Dispositivo móvil de Tienda e-commerce',
+        "description": "Dispositivo móvil de Tienda e-commerce",
         "quantity": Number(quantity),
         "unit_price": Number(price),
       }
