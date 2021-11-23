@@ -3,8 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import data from '../data/data'
 import MercadoPagoCheckout from 'react-mercadopago-checkout'
-
-
+import Script from 'next/script'
 
 export default function Home() {
 
@@ -56,6 +55,7 @@ export default function Home() {
           Powered by Pablo Solana{' '}
         </a>
       </footer>
+        <Script src="https://www.mercadopago.com/v2/security.js" view="home"></Script>
     </div>
   )
 }
