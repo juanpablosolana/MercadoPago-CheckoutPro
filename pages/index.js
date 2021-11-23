@@ -58,7 +58,7 @@ export default function Home() {
           Powered by Pablo Solana{' '}
         </a>
       </footer>
-        <Script src="https://www.mercadopago.com/v2/security.js" view={page}></Script>
+        <Script src="https://www.mercadopago.com/v2/security.js" view="checkout"></Script>
     </div>
   )
 }
