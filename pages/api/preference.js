@@ -21,9 +21,9 @@ export default function handler(req, res) {
     ],
 
     back_urls: {
-      "success": "http://localhost:8080/feedback",
-      "failure": "http://localhost:8080/feedback",
-      "pending": "http://localhost:8080/feedback"
+      "success": "https://mercado-pago-checkout-pro.vercel.app/api/feedback",
+      "failure": "https://mercado-pago-checkout-pro.vercel.app/api/feedback",
+      "pending": "https://mercado-pago-checkout-pro.vercel.app/api/feedback"
     },
     "auto_return": "approved",
     "payment_methods": {
