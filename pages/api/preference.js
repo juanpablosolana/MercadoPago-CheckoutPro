@@ -53,10 +53,11 @@ export default function handler(req, res) {
       "installments": 6
     },
     external_reference: 'juanpablosolana@gmail.com',
+    notification_url: "https://mercado-pago-checkout-pro.vercel.app/api/webhook",
   };
   mercadopago.preferences.create(preference)
     .then(function (response) {
-      console.log(response);
+      // console.log(response);
       // Este valor reemplazará el string "<%= global.id %>" en tu HTML global.id = response.body.id;
       res.json({
         id: response.body.id
