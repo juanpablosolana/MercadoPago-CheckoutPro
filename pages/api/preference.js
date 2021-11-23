@@ -6,20 +6,33 @@ mercadopago.configure({
 });
 
 export default function handler(req, res) {
-  const { id, title, description, img, quantity, price } = req.query
+  const { title, picture_url, quantity, price } = req.query
   // res.end(`title: ${title}, price: ${price},quantity:${quantity}`
   let preference = {
     items: [
       {
-        id: id,
-        title: title,
-        picture_url: img,
-        description: description,
-        quantity: Number(quantity),
-        unit_price: Number(price),
+        "id": 1234,
+        title,
+        picture_url,
+        "description": 'Dispositivo móvil de Tienda e-commerce',
+        "quantity": Number(quantity),
+        "unit_price": Number(price),
       }
     ],
-
+    "payer": {
+      "phone": {
+        "area_code": "11",
+        "number": Number(22223333)
+      },
+      "address": {
+        "zip_code":"1111",
+        "street_name": "Falsa",
+        "street_number": Number(123)
+      },
+      "email": "test_user_81131286@testuser.com",
+      "name":"Lalo",
+      "surname":"Landa"
+    },
     back_urls: {
       "success": "https://mercado-pago-checkout-pro.vercel.app/api/feedback",
       "failure": "https://mercado-pago-checkout-pro.vercel.app/api/feedback",
@@ -49,6 +62,6 @@ export default function handler(req, res) {
         id: response.body.id
       })
     }).catch(function (error) {
-      res.status(200).json({ err:error })
+      res.status(200).json({ err: error })
     });
 }

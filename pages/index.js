@@ -10,7 +10,7 @@ export default function Home() {
 
   const fetchData = async (item) => {
 
-    fetch(`api/preference?title=${item.name}&price=${item.price}&quantity=1`)
+    fetch(`api/preference?title=${item.name}&price=${item.price}&quantity=1&picture_url=https://mercado-pago-checkout-pro.vercel.app${item.image}`)
       .then(res => res.json())
       .then(data => {
         <MercadoPagoCheckout
