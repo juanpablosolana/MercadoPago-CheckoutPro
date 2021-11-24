@@ -1,8 +1,23 @@
-import Script from "next/script";
 import Image from "next/image";
 import styles from '../../styles/Home.module.css'
 import data from '../../data/data'
-const item = ()=>{
+import { useState,useEffect } from "react";
+
+const Item = ()=>{
+
+  const [page, setPage] = useState("item")
+  const [hasLoaded, setHasLoaded] = useState(false)
+  const appendSdkScript = () => {
+    const script = document.createElement('script')
+    script.src = 'https://www.mercadopago.com/v2/security.js'
+    script.setAttribute('view', `${page}`)
+    script.onload = () => setHasLoaded(true)
+    document.body.append(script)
+  };
+
+  useEffect(() => {
+    appendSdkScript()
+  }, [])
   const fetchData = async (item) => {
     fetch(`../api/preference?title=${item.name}&price=${item.price}&quantity=1&picture_url=https://mercado-pago-checkout-pro.vercel.app${item.image}`)
       .then(res => res.json())
@@ -29,8 +44,7 @@ const item = ()=>{
           )
         })}
       </main>
-      <Script src="https://www.mercadopago.com/v2/security.js" view="item"></Script>
       </div>
   )}
 
-  export default item;
+  export default Item;
