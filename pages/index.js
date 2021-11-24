@@ -2,12 +2,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import data from '../data/data'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 
 export default function Home() {
   const [page, setPage] = useState("home")
-  const [hasLoaded, setHasLoaded]= useState(false)
+  const [hasLoaded, setHasLoaded] = useState(false)
   const appendSdkScript = () => {
     const script = document.createElement('script')
     script.src = 'https://www.mercadopago.com/v2/security.js'
@@ -17,22 +18,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setPage("item")
-      appendSdkScript()
-  }, [])
+    appendSdkScript()
+  }, [page])
 
 
-  const fetchData = async (item) => {
-    setPage("item")
-    fetch(`api/preference?title=${item.name}&price=${item.price}&quantity=1&picture_url=https://mercado-pago-checkout-pro.vercel.app${item.image}`)
-      .then(res => res.json())
-      .then(data => {
-        window.location.replace(`https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=${data.id}`)
-      })
-      .catch(error => console.log(error))
-  }
-
-    return (
+  return (
     <div className={styles.container}>
       <Head>
         <title>Tienda online</title>
@@ -50,7 +40,7 @@ export default function Home() {
               <h1>{item.name}</h1>
               <Image src={item.image} width={300} height={300} alt="Product" />
               <p>¡Ultima pieza! solo ${item.price}</p>
-              <button className ={styles.button} onClick={() => fetchData(item)}>Comprar</button>
+              <Link href={`/item/${item.name}`}><a className={styles.button} onClick={() => setPage("item")}>Comprar</a></Link>
             </div>
           )
         })}
