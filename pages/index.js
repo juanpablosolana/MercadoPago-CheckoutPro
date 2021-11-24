@@ -17,8 +17,9 @@ export default function Home() {
   };
 
   useEffect(() => {
+    setPage("item")
       appendSdkScript()
-  }, [])
+  }, [page])
 
 
   const fetchData = async (item) => {
