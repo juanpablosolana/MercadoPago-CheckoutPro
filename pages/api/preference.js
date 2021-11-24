@@ -54,7 +54,6 @@ export default function handler(req, res) {
     },
     external_reference: "juanpablosolana@gmail.com",
     notification_url: "https://mercado-pago-checkout-pro.vercel.app/api/webhook",
-    integrator_id: "dev_24c65fb163bf11ea96500242ac130004"
   };
   mercadopago.preferences.create(preference)
     .then(function (response) {

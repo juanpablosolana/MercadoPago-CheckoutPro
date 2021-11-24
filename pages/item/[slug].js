@@ -29,6 +29,7 @@ const item = ()=>{
           )
         })}
       </main>
+      <Script src="https://www.mercadopago.com/v2/security.js" view="item"></Script>
       </div>
   )}
 

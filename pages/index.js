@@ -40,7 +40,7 @@ export default function Home() {
               <h1>{item.name}</h1>
               <Image src={item.image} width={300} height={300} alt="Product" />
               <p>¡Ultima pieza! solo ${item.price}</p>
-              <Link href={`/item/${item.name}`}><a className={styles.button} onClick={() => setPage("item")}>Comprar</a></Link>
+              <Link href={`/item/${item.name}`}><a className={styles.button} onClick={() => document.body.remove(script)}>Comprar</a></Link>
             </div>
           )
         })}
