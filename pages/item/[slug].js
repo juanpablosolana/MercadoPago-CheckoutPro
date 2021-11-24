@@ -2,8 +2,16 @@ import Script from "next/script";
 import Image from "next/image";
 import styles from '../../styles/Home.module.css'
 import data from '../../data/data'
-const item = ({item})=>{
-  console.log(item)
+const item = ()=>{
+  const fetchData = async (item) => {
+    fetch(`../api/preference?title=${item.name}&price=${item.price}&quantity=1&picture_url=https://mercado-pago-checkout-pro.vercel.app${item.image}`)
+      .then(res => res.json())
+      .then(data => {
+        window.location.replace(`https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=${data.id}`)
+      })
+      .catch(error => console.log(error))
+  }
+
   return(
     <div>
       <main className={styles.main}>
