@@ -13,7 +13,6 @@ export default function Home() {
     const script = document.createElement('script')
     script.src = 'https://www.mercadopago.com/v2/security.js'
     script.async = true
-    script.crossOrigin = 'anonymous'
     script.view = { page }
     script.onload = () => setHasLoaded(true)
     document.body.append(script)
