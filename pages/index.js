@@ -3,18 +3,35 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import data from '../data/data'
 import MercadoPagoCheckout from 'react-mercadopago-checkout'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Script from 'next/script'
 
 export default function Home() {
   const [page, setPage] = useState("home")
+  const [hasLoaded, setHasLoaded]= useState(false)
+  const appendSdkScript = () => {
+    const script = document.createElement('script')
+    script.src = 'https://www.mercadopago.com/v2/security.js'
+    script.async = true
+    script.crossOrigin = 'anonymous'
+    script.view = { page }
+    script.onload = () => setHasLoaded(true)
+    document.body.append(script)
+  };
+
+  useEffect(() => {
+    if (!hasLoaded) {
+      appendSdkScript()
+    }
+  }, [])
+
 
   const fetchData = async (item) => {
     setPage("item")
     fetch(`api/preference?title=${item.name}&price=${item.price}&quantity=1&picture_url=https://mercado-pago-checkout-pro.vercel.app${item.image}`)
       .then(res => res.json())
       .then(data => {
-
+        debugger
         <MercadoPagoCheckout
           publicKey={'APP_USR-1159009372558727-072921-8d0b99 80c7494985a5abd19fbe921a3d-617633181'}
           preferenceId={data}
@@ -58,7 +75,7 @@ export default function Home() {
           Powered by Pablo Solana{' '}
         </a>
       </footer>
-        <Script src="https://www.mercadopago.com/v2/security.js" view="checkout"></Script>
+
     </div>
   )
 }
