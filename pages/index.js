@@ -5,7 +5,6 @@ import data from '../data/data'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-
 export default function Home() {
   const [page, setPage] = useState("home")
   const [hasLoaded, setHasLoaded] = useState(false)
@@ -16,6 +15,15 @@ export default function Home() {
     script.onload = () => setHasLoaded(true)
     document.body.append(script)
   };
+
+  const fetchData = async (item) => {
+    fetch(`/api/preference?title=${item.name}&price=${item.price}&quantity=1&picture_url=https://mercado-pago-checkout-pro.vercel.app${item.image}`)
+      .then(res => res.json())
+      .then(data => {
+        window.location.replace(`https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=${data.id}`)
+      })
+      .catch(error => console.log(error))
+  }
 
   useEffect(() => {
     appendSdkScript()
@@ -40,7 +48,7 @@ export default function Home() {
               <h1>{item.name}</h1>
               <Image src={item.image} width={300} height={300} alt="Product" />
               <p>¡Ultima pieza! solo ${item.price}</p>
-              <Link href={`/item/${item.name}`}><a className={styles.button} onClick={() => document.body.remove(script)}>Comprar</a></Link>
+              <Link href={`/item/${item.name}`}><a className={styles.button} onClick={() => fetchData(item)}>Comprar</a></Link>
             </div>
           )
         })}
