@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import data from '../data/data'
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+
 
 export default function Home() {
   const [page, setPage] = useState("home")
@@ -48,7 +48,7 @@ export default function Home() {
               <h1>{item.name}</h1>
               <Image src={item.image} width={300} height={300} alt="Product" />
               <p>¡Ultima pieza! solo ${item.price}</p>
-              <Link href={`/item/${item.name}`}><a className={styles.button} onClick={() => fetchData(item)}>Comprar</a></Link>
+            <button className={styles.button} onClick={() => fetchData(item)}>Comprar</button>
             </div>
           )
         })}
